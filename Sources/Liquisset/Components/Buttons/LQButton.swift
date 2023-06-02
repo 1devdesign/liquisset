@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-public struct PlainButton<Content: View>: View {
+public struct LQButton<Content: View>: View {
     
-    var style: ButtonStyle
+    var style: LQButtonStyle
     let content: Content
     var action: () -> () = {}
     
-    public init(action: @escaping () -> Void, style: ButtonStyle? = nil, @ViewBuilder content: () -> Content) {
-        self.style = style ?? ButtonStyle()
+    public init(action: @escaping () -> Void, style: LQButtonStyle? = nil, @ViewBuilder content: () -> Content) {
+        self.style = style ?? LQButtonStyle()
         self.content = content()
         self.action = action
     }
@@ -39,17 +39,17 @@ public struct PlainButton<Content: View>: View {
 
 struct PlainButton_Previews: PreviewProvider {
     
-    static var style: ButtonStyle = .init(backgroundColor: Color(hexString: "#f5bc53"), cornerRadius: 8)
+    static var style: LQButtonStyle = .init(backgroundColor: Color(hexString: "#f5bc53"), cornerRadius: 8)
     
     static var previews: some View {
         Group {
-            PlainButton {
+            LQButton {
                 print("")
             } content: {
                 Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
                     .foregroundColor(.white)
             }
-            PlainButton(action: {
+            LQButton(action: {
                 print("")
             }, style: style) {
                 HStack {

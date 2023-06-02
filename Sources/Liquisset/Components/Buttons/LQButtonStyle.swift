@@ -8,7 +8,14 @@
 import Foundation
 import SwiftUI
 
-public struct ButtonStyle {
+public struct LQButtonStyle {
+    
+    public var width: CGFloat = 312
+    public var height: CGFloat = 54
+    public var cornerRadius: CGFloat = 0
+    public var backgroundColor: Color = .blue
+    public var borderWidth: CGFloat = 5
+    public var borderColor: Color = Color.gray.opacity(0.6)
     
     public init(
         width: CGFloat? = nil,
@@ -22,15 +29,8 @@ public struct ButtonStyle {
         self.height = height ?? 54
         self.cornerRadius = cornerRadius ?? 0
         self.backgroundColor = backgroundColor ?? Color.blue
-        self.strokeWidth = strokeWidth ?? 5
-        self.strokeColor = strokeColor ?? Color.gray.opacity(0.6)
+        self.borderWidth = strokeWidth ?? 5
+        self.borderColor = strokeColor ?? Color.gray.opacity(0.6)
     }
-    
-    public var width: CGFloat = 312
-    public var height: CGFloat = 54
-    public var cornerRadius: CGFloat = 0
-    public var backgroundColor: Color = .blue
-    public var strokeWidth: CGFloat = 5
-    public var strokeColor: Color = Color.gray.opacity(0.6)
     
 }
