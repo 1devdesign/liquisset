@@ -6,7 +6,10 @@
 </p>
 
 <p>
-    <a href="https://flowbite.com/docs/getting-started/license/"><img src="https://img.shields.io/badge/license-MIT-blue" alt="Licenese"></a>
+    <img src='https://img.shields.io/badge/Swift-5.1-green?style=flat'>
+    <img src='https://img.shields.io/badge/platform-iOS%20-lightgray.svg?style=flat'>
+    <img src='https://img.shields.io/badge/SMP-Supported-orange?style=flat'>
+    <a href="https://flowbite.com/docs/getting-started/license/"><img src="https://img.shields.io/badge/license-MIT-blue" alt="License"></a>
 </p>
 
 ## Table of Contents
