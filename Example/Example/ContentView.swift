@@ -18,6 +18,12 @@ struct ContentView: View {
             LQButton {
                 Text("Simple Button")
                     .foregroundColor(.white)
+                    .bold()
+            }
+            LQButton(isDisabled: .constant(true)) {
+                Text("Disabled button")
+                    .foregroundColor(.white)
+                    .bold()
             }
             LQButton(style: iconStyle) {
                 HStack {
@@ -35,6 +41,7 @@ struct ContentView: View {
             }, style: pillStyle) {
                 Text("Pill Button")
                     .foregroundColor(.white)
+                    .bold()
             }
         }
         .padding()
