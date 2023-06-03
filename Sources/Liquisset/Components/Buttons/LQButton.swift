@@ -36,6 +36,7 @@ public struct LQButton<Content: View>: View {
                 }
             }
         }
+        .disabled(isDisabled.wrappedValue)
         .frame(maxWidth: style.width)
         .frame(height: style.height)
         .disabled(isDisabled.wrappedValue)
