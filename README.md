@@ -43,7 +43,7 @@ dependencies: [
 
 ## Documentation
 
-For full documentation, visit [liquisset.com](https://liquisset.com/).
+For full documentation, visit [liquisset.com](https://liquisset.com/). **In progress**
 
 ## Maintainers
 
