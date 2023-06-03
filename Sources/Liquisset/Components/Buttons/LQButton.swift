@@ -11,41 +11,41 @@ public struct LQButton<Content: View>: View {
     
     var style: LQButtonStyle
     let content: Content
-    var action: () -> () = {}
+    var action: (()->())? = nil
     
-    public init(action: @escaping () -> Void, style: LQButtonStyle? = nil, @ViewBuilder content: () -> Content) {
+    public init(action: (()->())? = nil, style: LQButtonStyle? = nil, @ViewBuilder content: () -> Content) {
+        self.action = action ?? nil
         self.style = style ?? LQButtonStyle()
         self.content = content()
-        self.action = action
     }
     
     public var body: some View {
         Button {
-            action()
+            action?()
         } label: {
             ZStack {
                 Rectangle()
                     .fill(style.backgroundColor)
-                    .frame(width: style.width, height: style.height)
-                    .cornerRadius(style.cornerRadius)
+                    .frame(maxWidth: style.width)
+                    .frame(height: style.height)
+                    .cornerRadius(style.isPill ? style.height / 2 : style.cornerRadius)
                 VStack {
                     content
                 }
             }
         }
-        .frame(width: style.width, height: style.height)
+        .frame(maxWidth: style.width)
+        .frame(height: style.height)
     }
 }
 
 struct PlainButton_Previews: PreviewProvider {
     
-    static var style: LQButtonStyle = .init(backgroundColor: Color(hexString: "#f5bc53"), cornerRadius: 8)
+    static var style: LQButtonStyle = .init(backgroundColor: Color(hexString: "#f5bc53"), isPill: true)
     
     static var previews: some View {
-        Group {
+        VStack {
             LQButton {
-                print("")
-            } content: {
                 Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
                     .foregroundColor(.white)
             }
