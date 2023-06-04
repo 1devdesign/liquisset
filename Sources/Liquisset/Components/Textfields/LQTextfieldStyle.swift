@@ -19,5 +19,10 @@ public struct LQTextfieldStyle {
     public var borderColor: Color = Color.gray.opacity(0.6)
     public var lineWidth: CGFloat = .infinity
     public var textColor: Color = Color.black
+    public var textFont: Font = .callout
+    public var placeholderColor: Color = .black.opacity(0.4)
+    public var placeholderFont: Font = .subheadline
+    public var leadingImageColor: Color = .black
+    public var trailingImageColor: Color = .black
     
 }

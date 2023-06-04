@@ -14,44 +14,97 @@ public enum BorderStyle {
 
 public struct LQTextfield: View {
     
-    public var style: LQTextfieldStyle
-    public var text: Binding<String>
-    public var placeHolderText: String
-    public var isSecureText: Bool
-    public var isDisabled: Binding<Bool>
-    public var isAutocorrectionDisabled: Bool
+    private var style: LQTextfieldStyle
+    private var text: Binding<String>
+    private var placeHolderText: String
+    private var keyboardType: UIKeyboardType
+    @State private var secureText: Bool = false
+    private var isSecureText: Bool = false
+    private var isDisabled: Binding<Bool>
+    private var maxLength: Int
+    private var isAutocorrectionDisabled: Bool
+    private var secureTextImageShow: Image? = Image(systemName: "eye.fill")
+    private var secureTextImageHide: Image? = Image(systemName: "eye.slash.fill")
+    private var leadingImage : Image?
+    private var onClickLeadingImage: (() -> Void)?
+    @State private var trailingImage: Image?
+    private var onClickTrailingImage: (() -> Void)?
     
     public init(
         style: LQTextfieldStyle? = nil,
         text: Binding<String>,
         placeholderText: String = "",
-        isSecureText: Bool = false,
+        keyboardType: UIKeyboardType = .default,
         isDisabled: Binding<Bool> = .constant(false),
-        isAutocorrectionDisabled: Bool = false
+        maxCount: Int = 0,
+        isAutocorrectionDisabled: Bool = false,
+        leadingImage: Image? = nil,
+        onClickLeadingImage: (() -> Void)? = nil,
+        trailingImage: Image? = nil,
+        onClickTrailingImage: (() -> Void)? = nil
     ) {
         self.style = style ?? LQTextfieldStyle()
         self.text = text
         self.placeHolderText = placeholderText
-        self.isSecureText = isSecureText
+        self.keyboardType = keyboardType
         self.isDisabled = isDisabled
+        self.maxLength = maxCount
         self.isAutocorrectionDisabled = isAutocorrectionDisabled
+        self.leadingImage = leadingImage
+        self.onClickLeadingImage = onClickLeadingImage
+        self._trailingImage = State(initialValue: trailingImage)
+        self.onClickTrailingImage = onClickTrailingImage
     }
     
     public var body: some View {
         VStack(spacing: 0) {
-            HStack {
+            HStack(spacing: 0) {
+                leadingImage?
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundColor(style.leadingImageColor)
+                    .frame(width: 22, height: 22)
+                    .padding(.leading, 12)
+                    .disabled(isDisabled.wrappedValue)
+                    .onTapGesture {
+                        onClickLeadingImage?()
+                    }
                 defaultField()
                     .placeholder(when: text.wrappedValue.isEmpty, placeholder: {
                         Text(placeHolderText)
-                            .foregroundColor(.black.opacity(0.4))
+                            .font(style.placeholderFont)
+                            .foregroundColor(style.placeholderColor)
                     })
                     .frame(maxWidth: .infinity)
                     .frame(height: style.height)
+                    .font(style.textFont)
                     .foregroundColor(isDisabled.wrappedValue ? style.textColor.opacity(0.5) : style.textColor)
+                    .keyboardType(keyboardType)
                     .disabled(isDisabled.wrappedValue)
                     .disableAutocorrection(isAutocorrectionDisabled)
+                    .onReceive(text.wrappedValue.publisher.collect()) {
+                        let string = String($0.prefix(maxLength))
+                        if text.wrappedValue != string && (maxLength != 0){
+                            text.wrappedValue = string
+                        }
+                    }
                     .padding([.leading, .trailing], style.borderType == .squared ? 12 : 1)
                     .background(Color.clear)
+                trailingImage?
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundColor(style.trailingImageColor)
+                    .frame(width: 22, height: 22)
+                    .padding(.trailing, 12)
+                    .onTapGesture {
+                        if !isSecureText {
+                            onClickTrailingImage?()
+                        } else {
+                            secureText.toggle()
+                            trailingImage = secureText ? secureTextImageShow : secureTextImageHide
+                        }
+                    }
+                    .disabled(isDisabled.wrappedValue)
             }
             .background(
                 RoundedRectangle(cornerRadius: getCornerRadius())
@@ -67,9 +120,9 @@ public struct LQTextfield: View {
     }
     
     private func defaultField() -> AnyView {
-        if !isSecureText {
+        if !secureText {
             return AnyView(TextField("", text: text))
-        } else{
+        } else {
             return AnyView(SecureField("", text: text))
         }
     }
@@ -87,16 +140,26 @@ public struct LQTextfield: View {
         }
     }
     
+    public func setSecureText(_ secure: Bool) -> Self{
+        var copy = self
+        copy._secureText = State(initialValue: secure)
+        if secure {
+            copy._trailingImage = State(initialValue: copy.secureTextImageShow)
+        }
+        copy.isSecureText = secure
+        return copy
+    }
+    
 }
 
 struct LQTextfieldView_Previews: PreviewProvider {
     @State static var text = ""
-    static var style = LQTextfieldStyle(borderType: .squared, cornerRadius: 0, borderWidth: 2, borderColor: Color.pink.opacity(0.4))
+    static var style = LQTextfieldStyle(borderType: .squared, cornerRadius: 12, borderWidth: 2, borderColor: Color.pink.opacity(0.4))
     static var previews: some View {
         VStack(spacing: 24) {
             LQTextfield(text: $text, placeholderText: "Placeholder")
             LQTextfield(style: style, text: $text, placeholderText: "Placeholder 2")
-            LQTextfield(text: $text, placeholderText: "Placeholder 3", isSecureText: true)
+            LQTextfield(text: $text, placeholderText: "Placeholder 3").setSecureText(true)
         }.padding()
     }
 }
