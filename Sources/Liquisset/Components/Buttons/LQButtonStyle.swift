@@ -10,13 +10,13 @@ import SwiftUI
 
 public struct LQButtonStyle {
     
-    public var width: CGFloat = 312
-    public var height: CGFloat = 54
-    public var backgroundColor: Color = .blue
+    public var width: CGFloat
+    public var height: CGFloat
+    public var backgroundColor: Color
     public var isPill: Bool = false
-    public var cornerRadius: CGFloat = 0
-    public var borderWidth: CGFloat = 5
-    public var borderColor: Color = Color.gray.opacity(0.6)
+    public var cornerRadius: CGFloat
+    public var borderWidth: CGFloat
+    public var borderColor: Color
     
     public init(
         width: CGFloat? = nil,
@@ -24,16 +24,16 @@ public struct LQButtonStyle {
         backgroundColor: Color? = nil,
         isPill: Bool? = nil,
         cornerRadius: CGFloat? = nil,
-        strokeWidth: CGFloat? = nil,
-        strokeColor: Color? = nil
+        borderWidth: CGFloat? = nil,
+        borderColor: Color? = nil
     ) {
         self.width = width ?? .infinity
         self.height = height ?? 54
         self.isPill = isPill ?? false
         self.cornerRadius = cornerRadius ?? 0
         self.backgroundColor = backgroundColor ?? Color.blue
-        self.borderWidth = strokeWidth ?? 5
-        self.borderColor = strokeColor ?? Color.gray.opacity(0.6)
+        self.borderWidth = borderWidth ?? 1
+        self.borderColor = borderColor ?? .clear
     }
     
 }

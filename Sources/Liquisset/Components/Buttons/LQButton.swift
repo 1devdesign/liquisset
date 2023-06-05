@@ -31,6 +31,10 @@ public struct LQButton<Content: View>: View {
                     .frame(maxWidth: style.width)
                     .frame(height: style.height)
                     .cornerRadius(style.isPill ? style.height / 2 : style.cornerRadius)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: style.isPill ? style.height / 2 : style.cornerRadius)
+                            .stroke(style.borderColor, lineWidth: style.borderWidth)
+                    )
                 VStack {
                     content
                 }
