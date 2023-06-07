@@ -9,10 +9,10 @@ import SwiftUI
 
 public struct LQButton<Content: View>: View {
     
-    var action: (()->())? = nil
-    var style: LQButtonStyle
-    var isDisabled: Binding<Bool>
-    let content: Content
+    private var action: (()->())? = nil
+    private let style: LQButtonStyle
+    private let isDisabled: Binding<Bool>
+    private let content: Content
     
     public init(action: (()->())? = nil, style: LQButtonStyle? = nil, isDisabled: Binding<Bool>? = nil, @ViewBuilder content: () -> Content) {
         self.action = action ?? nil
