@@ -19,6 +19,11 @@ struct ContentView: View {
                     Text("Buttons")
                 }
                 NavigationLink {
+                    LQRadioButtonsView()
+                } label: {
+                    Text("Radio Buttons")
+                }
+                NavigationLink {
                     LQTextfieldsView()
                 } label: {
                     Text("Textfields")

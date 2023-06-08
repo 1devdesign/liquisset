@@ -53,7 +53,7 @@ struct LQButtonsView: View {
         .padding()
         .navigationTitle("Buttons")
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(true)
+//        .navigationBarBackButtonHidden(true)
     }
 }
 

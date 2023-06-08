@@ -30,7 +30,7 @@ struct LQTextfieldsView: View {
         .padding()
         .navigationTitle("Textfields")
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(true)
+//        .navigationBarBackButtonHidden(true)
     }
 }
 
