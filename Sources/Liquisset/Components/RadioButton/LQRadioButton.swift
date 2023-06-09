@@ -48,6 +48,7 @@ public struct LQRadioButton: View {
                     self.isChecked = false
                     onClick?()
                 }
+                .animation(.easeOut, value: 0)
             } else {
                 HStack {
                     Circle()
@@ -63,6 +64,7 @@ public struct LQRadioButton: View {
                     self.isChecked = true
                     onClick?()
                 }
+                .animation(.easeOut, value: 0)
             }
         }
     }
