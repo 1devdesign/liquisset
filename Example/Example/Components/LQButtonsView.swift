@@ -16,6 +16,24 @@ struct LQButtonsView: View {
     
     var body: some View {
         VStack(spacing: 16) {
+            Button {
+                print("Hello")
+            } label: {
+                Text("Hello world!")
+            }
+            .simpleLQButton(buttonStatus: .danger)
+            Button {
+                print("Hello")
+            } label: {
+                Text("Hello world!")
+            }
+            .simpleButtonOutlineBorder(buttonStatus: .primary)
+            Button {
+                print("Hello")
+            } label: {
+                Text("Hello world!")
+            }
+            .simpleLQButton(buttonStatus: .warning)
             LQButton {
                 Text("Simple Button")
                     .foregroundColor(.white)

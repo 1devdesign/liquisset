@@ -69,17 +69,12 @@ public struct SimpleLQButtonModifier : ViewModifier {
     }
 }
 
-extension View {
- public func simpleLQButton(buttonStatus:ButtonStatus = ButtonStatus.primary) -> some View {
-        
-        modifier(SimpleLQButtonModifier(buttonStatus: buttonStatus))
-        
-    }
-}
-
-extension View {
-    func simpleButtonOutlineBorder(buttonStatus:ButtonStatus = ButtonStatus.primary) -> some View {
-        self
+public struct SimpleButtonOutlineBorderModofier : ViewModifier {
+    
+    var buttonStatus:ButtonStatus = ButtonStatus.primary
+    
+    public func body(content:Content) -> some View {
+        content
             .foregroundColor(buttonStatusToColor(buttonStatus: buttonStatus))
             .padding()
             .background(
@@ -87,18 +82,43 @@ extension View {
                     .stroke(buttonStatusToColor(buttonStatus: buttonStatus))
             )
             .background(buttonStatusToColor(buttonStatus: buttonStatus).opacity(0.1))
-            
-        
     }
 }
 
-extension View {
-    func simpleButtonGhost(buttonStatus:ButtonStatus = ButtonStatus.primary) -> some View {
-        self
+public struct SimpleButtonGhostModifier : ViewModifier {
+    
+    var buttonStatus:ButtonStatus = ButtonStatus.primary
+    
+    public func body(content:Content) -> some View {
+        content
             .foregroundColor(buttonStatusToColor(buttonStatus: buttonStatus))
             .padding()
+            .background(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(buttonStatusToColor(buttonStatus: buttonStatus))
+            )
+            .background(buttonStatusToColor(buttonStatus: buttonStatus).opacity(0.1))
     }
 }
+
+
+extension View {
+    // Filled Button
+    public func simpleLQButton(buttonStatus:ButtonStatus = ButtonStatus.primary) -> some View {
+        modifier(SimpleLQButtonModifier(buttonStatus: buttonStatus))
+    }
+    // Outline Button
+    public func simpleButtonOutlineBorder(buttonStatus:ButtonStatus = ButtonStatus.primary) -> some View {
+        modifier(SimpleButtonOutlineBorderModofier(buttonStatus: buttonStatus))
+    }
+    
+    // Text Buttom
+    public func simpleButtonGhost(buttonStatus:ButtonStatus = ButtonStatus.primary) -> some View {
+        modifier(SimpleButtonGhostModifier(buttonStatus: buttonStatus))
+    }
+}
+
+
 
 struct LQButtonModifier_Previews: PreviewProvider {
     static var previews: some View {
