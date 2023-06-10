@@ -38,7 +38,7 @@ public struct LQButtonStyle {
     
 }
 
-enum ButtonStatus {
+public enum ButtonStatus {
     case primary
     case info
     case warning
@@ -47,7 +47,7 @@ enum ButtonStatus {
     
 }
 
-func buttonStatusToColor(buttonStatus:ButtonStatus) -> Color {
+public func buttonStatusToColor(buttonStatus:ButtonStatus) -> Color {
     switch buttonStatus{
         
     case .primary:

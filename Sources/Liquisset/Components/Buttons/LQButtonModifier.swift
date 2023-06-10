@@ -56,11 +56,11 @@ struct LQButtonModifier: View {
     }
 }
 
-struct SimpleLQButtonModifier : ViewModifier {
+public struct SimpleLQButtonModifier : ViewModifier {
     
     var buttonStatus:ButtonStatus = ButtonStatus.primary
     
-    func body(content:Content) -> some View {
+    public func body(content:Content) -> some View {
         content
             .foregroundColor(.white)
             .padding()
@@ -70,7 +70,7 @@ struct SimpleLQButtonModifier : ViewModifier {
 }
 
 extension View {
-    func simpleLQButton(buttonStatus:ButtonStatus = ButtonStatus.primary) -> some View {
+ public func simpleLQButton(buttonStatus:ButtonStatus = ButtonStatus.primary) -> some View {
         
         modifier(SimpleLQButtonModifier(buttonStatus: buttonStatus))
         
