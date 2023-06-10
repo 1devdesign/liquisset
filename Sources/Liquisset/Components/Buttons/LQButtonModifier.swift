@@ -9,9 +9,7 @@
 import SwiftUI
 
 struct LQButtonModifier: View {
-    
-    public init (){}
-    
+        
     var body: some View {
         VStack {
             Button {
@@ -58,14 +56,23 @@ struct LQButtonModifier: View {
     }
 }
 
-extension View {
-   
-    func simpleLQButton(buttonStatus:ButtonStatus = ButtonStatus.primary) -> some View {
-        self
+struct SimpleLQButtonModifier : ViewModifier {
+    
+    var buttonStatus:ButtonStatus = ButtonStatus.primary
+    
+    func body(content:Content) -> some View {
+        content
             .foregroundColor(.white)
             .padding()
             .background(buttonStatusToColor(buttonStatus: buttonStatus))
             .cornerRadius(8)
+    }
+}
+
+extension View {
+    func simpleLQButton(buttonStatus:ButtonStatus = ButtonStatus.primary) -> some View {
+        
+        modifier(SimpleLQButtonModifier(buttonStatus: buttonStatus))
         
     }
 }
