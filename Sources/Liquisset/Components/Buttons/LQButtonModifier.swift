@@ -93,11 +93,6 @@ public struct SimpleButtonGhostModifier : ViewModifier {
         content
             .foregroundColor(buttonStatusToColor(buttonStatus: buttonStatus))
             .padding()
-            .background(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(buttonStatusToColor(buttonStatus: buttonStatus))
-            )
-            .background(buttonStatusToColor(buttonStatus: buttonStatus).opacity(0.1))
     }
 }
 
