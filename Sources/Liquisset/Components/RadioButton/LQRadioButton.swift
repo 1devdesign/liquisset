@@ -13,7 +13,6 @@ public struct LQRadioButton: View {
     @Binding private var isChecked: Bool
     private var text: String
     private let onClick: (() -> Void)?
-    @State private var isAnimated:Bool = false
     
     public init(
         style: LQRadioButtonStyle? = nil,
@@ -49,8 +48,7 @@ public struct LQRadioButton: View {
                     self.isChecked = false
                     onClick?()
                 }
-                .animation(.easeOut, value: isAnimated)
-                .opacity(isAnimated ? 0 : 1)
+                
             } else {
                 HStack {
                     Circle()
@@ -66,8 +64,7 @@ public struct LQRadioButton: View {
                     self.isChecked = true
                     onClick?()
                 }
-                .animation(.easeOut, value: isAnimated)
-                .opacity(isAnimated ? 0 : 1)
+                
             }
         }
     }
