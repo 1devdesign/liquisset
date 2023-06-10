@@ -48,6 +48,7 @@ public struct LQRadioButton: View {
                     self.isChecked = false
                     onClick?()
                 }
+                
             } else {
                 HStack {
                     Circle()
@@ -63,6 +64,7 @@ public struct LQRadioButton: View {
                     self.isChecked = true
                     onClick?()
                 }
+                
             }
         }
     }

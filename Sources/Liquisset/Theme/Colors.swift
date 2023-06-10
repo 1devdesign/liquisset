@@ -97,4 +97,12 @@ extension Color {
     public static var pink800: Color { return Color(hexString: "#99154B")! }
     public static var pink900: Color { return Color(hexString: "#751A3D")! }
     
+    
+    public static var primary: Color { return Color.blue }
+    public static var success: Color { return Color.emerald400 }
+    public static var info: Color { return Color.blue500 }
+    public static var warning: Color { return Color.amber300 }
+    public static var danger: Color { return Color.red600 }
+    public static var basic: Color { return Color.gray300 }
+    
 }

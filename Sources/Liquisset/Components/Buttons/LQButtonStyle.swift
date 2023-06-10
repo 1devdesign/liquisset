@@ -37,3 +37,29 @@ public struct LQButtonStyle {
     }
     
 }
+
+public enum ButtonStatus {
+    case primary
+    case info
+    case warning
+    case danger
+    case basic
+    
+}
+
+public func buttonStatusToColor(buttonStatus:ButtonStatus) -> Color {
+    switch buttonStatus{
+        
+    case .primary:
+       return Color.primary
+    case .info:
+        return Color.info
+    case .warning:
+        return Color.warning
+    case .danger:
+        return Color.danger
+    case .basic:
+        return Color.basic
+    }
+    
+}
